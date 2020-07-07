@@ -1,0 +1,43 @@
+
+#header{
+	background-color:black;
+	color: #fff;
+	border: 2px solid black; 
+}
+
+#header a{
+	color: white;
+}
+
+#header a:hover{
+	background-color: #ffffff;
+	color:black;
+}
+
+#header .active a{
+	background-color: #ffffff;
+	color:black;
+	
+}
+
+#home-title{
+	width:90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.table-center {
+    max-width: 500px;
+    margin: auto;
+    margin-top:50px;
+}
+.navbar {
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 999;
+  }
+  
+
+  
+ 

@@ -1,0 +1,331 @@
+html, body {
+  height: 100%;
+}
+
+
+.table-space {
+    margin-top:100px;
+    margin-bottom:50px;
+    /* margin-left: -150px; */
+    margin-right: 200px;
+    
+}
+
+/* body {
+    text-align: center;
+         
+} */
+
+.box-Import {
+    margin: auto;
+    width: 60%;
+    height:80px;
+    border: 5px solid black;
+    padding: 15px;
+    background-color: lightgrey;
+    text-align: center;
+}
+
+.box-Config {
+    background-color: lightgrey;
+    width: 100%;
+    height:80px;
+    border: 5px solid darksalmon;
+    padding:20px;
+    margin:auto;
+    text-align: center;
+
+}
+
+.box-Edit {
+    background-color: lightgrey;
+    width: 800px;
+    height:100px;
+    border: 5px solid black;
+    padding:20px;
+    margin:auto;
+}
+
+.Config-Form-Add {
+  border: 5px solid darksalmon;
+  padding:20px;
+  background-color: antiquewhite;
+  /* width: 70%; */
+}
+
+
+.loading {
+    position: fixed;
+    z-index: 999;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    display:none;
+}
+
+/* Transparent Overlay */
+.loading:before {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+/* hide "loading..." text */
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+.loading:not(:required):after {
+    content: '';
+    display: block;
+    font-size: 10px;
+    width: 150px;
+    height: 150px;
+    margin-top: -0.5em;
+
+    border: 15px solid black;
+    border-radius: 100%;
+    border-bottom-color: transparent;
+    -webkit-animation: spinner 1s linear 0s infinite;
+    animation: spinner 1s linear 0s infinite;
+
+
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+}
+@-moz-keyframes spinner {
+0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+}
+@-o-keyframes spinner {
+0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+}
+@keyframes spinner {
+0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+}
+.icon-success {
+    color: #5CB85C;
+}
+
+.icon-danger {
+    color: red;
+}
+
+.error-text {
+    font-weight:bold;
+    font-size:20px;
+    /* margin-right:350px; */
+    margin-top:25px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.total-col {
+    padding: 5px;
+    font-weight: bold;
+    color:black;
+    font-size: 17px;
+    width: max-content;
+  }
+  
+.tableFixHead          { overflow-y: auto; width: 100%; }
+.tableFixHead thead th { position: sticky; top: -1px; z-index: 99; line-height: 1;} */
+
+
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 16px; }
+.table-bordered>thead>tr>th{ background:black; color: white; } 
+.table-borderedConfig>thead>tr>th{ background:darksalmon; color: white; } 
+
+.table-bordered>tbody>tr>td{
+    border: 1px solid black;
+}
+
+.table-borderedConfig>tbody>tr>td{
+    border: 1px solid darksalmon;
+}
+
+.table>thead>tr>th{
+    line-height: 1;
+    border: 0;
+}
+
+.page-link {
+    color:black;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: black;
+    border-color: black;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+}
+.form-control:disabled {
+    cursor: not-allowed;
+}
+
+
+.container{
+    max-width: 1349px;
+}
+
+/* .registration {
+	background-color: #fff;
+	max-width: 600px;
+	margin: 0 auto;
+	padding-bottom: 20px;
+	box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.3);
+	border-bottom: 5px solid #ffdb3a;
+} */
+
+
+.input-requirements {
+  font-size: 1rem;
+  font-style: italic;
+  text-align: left;
+  list-style: disc;
+  list-style-position: inside;
+  max-width: 400px;
+  margin: 10px auto;
+  color: rgb(150,150,150);
+}
+
+
+.input-requirements li.invalid {
+	color: #e74c3c;
+}
+.input-requirements li.valid {
+	color: #2ecc71;
+}
+
+.input-requirements li.valid:after {
+	display: inline-block;
+	padding-left: 10px;
+	content: "\2713";
+}
+
+  
+  input[disabled],
+  textarea[disabled],
+  select[disabled],
+  option[disabled],
+  button[disabled] {
+    cursor: not-allowed;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus,
+  option:focus,
+  button:focus  {
+    background-color: var(--fh-focus-bg-color);
+    border-color: var(--fh-focus-border-color);
+  }
+  
+  input[type="checkbox"]:focus,
+  input[type="radio"]:focus {
+    outline: var(--fh-focus-border-color) solid 2px;
+  }
+  
+  button:hover,
+  input[type="button"]:hover,
+  input[type="submit"]:hover,
+  input[type="reset"]:hover,
+  button:focus,
+  input[type="button"]:focus,
+  input[type="submit"]:focus,
+  input[type="reset"]:focus {
+    background-color: var(--fh-button-hover-bg-color);
+    color: var(--fh-button-hover-font-color);
+  }
+  
+  input:not([type="submit"]) + .input-requirements {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 1s ease-out;  
+  }
+  
+  input:not([type="submit"]):hover + .input-requirements,
+  input:not([type="submit"]):focus + .input-requirements,
+  input:not([type="submit"]):active + .input-requirements {
+    max-height: 1000px; /* any large number (bigger then the .input-requirements list) */
+    transition: max-height 1s ease-in;
+  }
+  
+  
+  
+  
