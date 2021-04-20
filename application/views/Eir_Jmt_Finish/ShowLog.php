@@ -43,6 +43,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!--<link rel="stylesheet" href="<?php echo base_url();?>css/navbar.css">-->
     <!--<link rel="stylesheet" href="<?echo base_url()?>css/styles.css">-->
+     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/font-awesome-4.7.0/css/font-awesome.min.css">
     <style>
         .loading {
             position: fixed;

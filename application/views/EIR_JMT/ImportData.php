@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.1/themes/smoothness/jquery-ui.css">
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <link rel="stylesheet" href="<?echo base_url()?>/css/styles.css">
+        <link rel="stylesheet" href="<?php echo base_url()?>/css/styles.css">
         <link rel="stylesheet" href="<?php echo base_url();?>/css/navbar-bar.css">
         <style>
             a:hover{
@@ -27,11 +27,31 @@
                 cursor: default;
             }
         </style>
+        <style>
+              #loadding{
+               position: fixed;
+               left: 0px;
+               width: 100%;
+               height: 100%;
+               padding-left:45%;
+               padding-top: 15%;
+
+               }.modal {
+               display: none; 
+               position: fixed;  
+               height:100%; 
+               background-color: rgb(0,0,0); /* Fallback color */ 
+               background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+               padding-top: 0px;
+
+           }  
+    </style>  
 
 	</head>
     <body>
         <div class="loading" id="spinner"></div>
-            <div class="container text-center" style="margin-top:90px;margin-left:300px;">
+           
+        <div class="container text-center" style="margin-top:90px;margin-left:300px;">
                 <div style="display:inline-flex;margin-left:-200px;">
                     <div style="margin-top:7px">เลือกไฟล์ที่ต้องการ Import :&nbsp; </div>
                     <input type="file" name="" id="fileUpload" class="form-control" style="width:250px;" onchange="check_valid_data(this)">
@@ -129,7 +149,7 @@
                     </table>
                 </div>
 
-            <!-- ////////////////////////////////////////////////////////////////// -->
+                <!-- ////////////////////////////////////////////////////////////////// -->
                 <div id="userModal_Edit" class="modal fade">
                     <div class="modal-dialog">
                         <form method="post" id="user_form_edit">
@@ -164,48 +184,53 @@
             <!-- ////////////////////////////////////////////////////////////////// -->
             <!-- ////////////////////////////////////////////////////////////////// -->
             <div id="userModal_Add" class="modal fade">
-                    <div class="modal-dialog">
-                        <form method="post" id="user_form_add">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Add</h4>
-                                    <br />
-                                </div>
-                                <div class="modal-body">
-                                    <label>Enter Port</label>
-                                    <select name="port_add" id="port_add" class="form-control">
-                                        <option selected> -- select port -- </option>
-                                    </select>
-                                    <br />
-                                    <label>Enter Cash</label>
-                                    <input type="text" name="cash_add" id="cash_add" class="form-control" onkeypress="javascript:return isNumber(event)" />
-                                    <br />
-                                </div>
-                                <div class="modal-footer">
-                                    <input type="submit" id="btn_add" class="btn btn-success" value="Add" />
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
+                <div class="modal-dialog">
+                    <form method="post" id="user_form_add">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Add</h4>
+                                <br />
                             </div>
-                        </form>
-                    </div>
+                            <div class="modal-body">
+                                <label>Enter Port</label>
+                                <select name="port_add" id="port_add" class="form-control">
+                                    <option selected> -- select port -- </option>
+                                </select>
+                                <br />
+                                <label>Enter Cash</label>
+                                <input type="text" name="cash_add" id="cash_add" class="form-control" onkeypress="javascript:return isNumber(event)" />
+                                <br />
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" id="btn_add" class="btn btn-success" value="Add" />
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+            </div>
             <!-- ////////////////////////////////////////////////////////////////// -->
             <div class='pagination-container' >
-				<nav style="margin-top: -45px;margin-right: 300px;">
-				    <ul class="pagination">
+                <nav style="margin-top: -45px;margin-right: 300px;">
+                    <ul class="pagination">
                         <li data-page="prev" >
-						    <span> < <span class="sr-only">(current)</span></span>
-						</li>
-				    <!--	Here the JS Function Will Add the Rows -->
+                            <span> < <span class="sr-only">(current)</span></span>
+                        </li>
+                        <!--	Here the JS Function Will Add the Rows -->
                         <li data-page="next" id="prev">
-						    <span> > <span class="sr-only">(current)</span></span>
-						</li>
-				    </ul>
-				</nav>
+                            <span> > <span class="sr-only">(current)</span></span>
+                        </li>
+                    </ul>
+                </nav>
             </div>
              <!-- ////////////////////////////////////////////////////////////////// -->
         </div>
+        
+        <div id="spinner" class="modal" style="display: none; text-align: center;">
+            <img style="margin-top: 15%;width: 15%;" src="<?php echo base_url(); ?>assets/images/loader.gif">
+        </div>
+
 	</body>
 </html>
 

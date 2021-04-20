@@ -7,7 +7,7 @@ class Call_ShowLog extends CI_Controller {
     public function __construct() {
         parent:: __construct();   
         $this->load->model('ShowLog_model'); 
-		$this->load->model('Payment_model','PM');		
+	$this->load->model('Payment_model','PM');		
         $this->load->helper('url','form','html');   
         $this->load->library('session','upload');
         $this->load->database();
@@ -30,15 +30,35 @@ class Call_ShowLog extends CI_Controller {
 	public function MainShow() {
 
         $username = $this->session->userdata('username');
-        $data['username'] = $this->PM->username($username);
+        $companyses = $this->session->userdata('company');
+
+        if ($username == "") {
+            $this->load->view('false');
+        } else {
+        $data['username'] = $this->PM->username($username,$companyses);
+        foreach ($data['username'] as $key) {
+            $com = $key->company;
+        }
+
+            if ($com == 'jam') {
+                $T = 'JAM';
+            }
+            if ($com == 'jmt') {
+                $T = 'JMTLOAN_PROD';
+            }
+     
+        $data['username_menu'] = $this->PM->username_menu($T,$username);
+        
         $name = $this->session->userdata("NameEmp");
+        
+        $data['username_menu'] = $this->PM->username_menu($T,$username);
 
         
 
         $data['Main_Homepayment'] = "EIR_Jmt_Finish/showLog";
         $this->load->view('Homepayment', $data);
     }
-
+    }
 //----------------------------------------------------------------------------------------------------------------//
 
     public function getShowLog(){
@@ -150,9 +170,3 @@ class Call_ShowLog extends CI_Controller {
 
 
 }
-
-
-
-
-
-?>

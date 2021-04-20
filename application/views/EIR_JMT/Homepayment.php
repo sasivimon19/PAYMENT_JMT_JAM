@@ -60,9 +60,11 @@
                 </a>
 
                 <!-- Sidebar -->
+                <label>eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</label>
                 <div class="sidebar">
                   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
+                            นนนนนนนนนนนนนนนนน
                         <?php foreach ($username as $row) { ?>
                             <?php $Subject_Right = $row->Subject_Right; ?>
                             <?php $name = iconv('TIS-620', 'UTF-8', $row->name); ?>
@@ -175,7 +177,7 @@
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-database"></i>
                                     <p>
-                                        Report ข้อมูลรับรู้รายได้
+                                        1Report ข้อมูลรับรู้รายได้
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
@@ -254,12 +256,13 @@
                         </ul>
                     </nav>
                 </div>
+              </div>
             </aside>
 
 
-                        <div class="col-md-12" id="Form_loadpayment" name="Form_loadpayment" >
-                            <?php $this->load->view($Main_Homepayment); ?>
-                        </div>
+            <div class="col-md-12" id="Form_loadpayment" name="Form_loadpayment" >
+                <?php $this->load->view($Main_Homepayment); ?>
+            </div>
 
 
 

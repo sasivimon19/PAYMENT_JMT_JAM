@@ -5,27 +5,28 @@
     $vatamount = 0;
     $nn = 0;
     foreach ($daily as $key) {
+
         $amount = $amount + $key->amount;
         $vatamount = $vatamount + $key->vatamount;
+        $sumBefore = $amount - $vatamount;
+
         $nn++;
-    }?>
+    } ?>
 
-
-    <div class="col-md-12">     
-        <div class="row" style=" margin-top: 2%;"> 
+    <div class="col-md-12">
+        <div class="row" style=" margin-top: 2%;">
             <div class="col-md-3">
                 <div class="input-group mb-4">
                     <div class="input-group-prepend">
-                        <button type="button" class="btn btn-default "  style="background-color: #D3D3D3;"><b> จำนวนรายการ </b></button>
+                        <button type="button" class="btn btn-default " style="background-color: #D3D3D3;"><b> จำนวนรายการ </b></button>
                     </div>
-<!--                 <input style="color: #F0FF03;background-color: black;text-align: right;" id="msg" type="text" class="form-control" name="msg" value="<?php //echo number_format($nn); ?>">-->
-                    <input style="color: #F0FF03;background-color: black;text-align: right;" id="msg" type="text" class="form-control" name="msg" value="<?php echo number_format($sumItemnumber); ?>">
+                    <input style="color: #F0FF03;background-color: black;text-align: right;" id="msg" type="text" class="form-control" name="msg" value="<?php echo count($daily); ?>">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="input-group mb-4">
                     <div class="input-group-prepend">
-                        <button type="button" class="btn btn-default "  style="background-color: #D3D3D3;"><b> Amount </b></button>
+                        <button type="button" class="btn btn-default " style="background-color: #D3D3D3;"><b> Amount </b></button>
                     </div>
                     <input style="color: #F0FF03;background-color: black;text-align: right;" id="msg" type="text" class="form-control" name="msg" value="<?php echo number_format($amount, 2); ?>">
                 </div>
@@ -33,7 +34,7 @@
             <div class="col-md-3">
                 <div class="input-group mb-4">
                     <div class="input-group-prepend">
-                        <button type="button" class="btn btn-default "  style="background-color:#D3D3D3;"><b> Vatamount </b></button>
+                        <button type="button" class="btn btn-default " style="background-color:#D3D3D3;"><b> Vatamount </b></button>
                     </div>
                     <input style="color: #F0FF03;background-color: black;text-align: right;" id="msg" type="text" class="form-control" name="msg" value="<?php echo number_format($vatamount, 2); ?>">
                 </div>
@@ -41,7 +42,7 @@
             <div class="col-md-3">
                 <div class="input-group mb-4">
                     <div class="input-group-prepend">
-                        <button type="button" class="btn btn-default "  style="background-color: #D3D3D3;"><b> Total </b></button>
+                        <button type="button" class="btn btn-default " style="background-color: #D3D3D3;"><b> Total </b></button>
                     </div>
                     <input style="color: #F0FF03;background-color: black;text-align: right;" id="msg" type="text" class="form-control" name="msg" value="<?php echo number_format($amount + $vatamount, 2); ?>">
                 </div>
@@ -60,18 +61,17 @@
                                 <div class="col-md-4" style=" color: black;">
                                     <h3 class="card-title"><b> <i class="fas fa-edit"></i> แสดงข้อมูลตาราง Daily Receive Report</b></h3>
                                 </div>
-                                 <div class="input-group-prepend" style=" margin-left: 43%">
-                                    <!--<a href="<?php //echo site_url('Payment_controller/Export_DailyReceiveReport') ?>"><button type="button" class="btn btn-warning btn-sm"><i class="fas fa-cloud-download-alt"></i> <b>Export Daily Receive Report</b></button></a>-->
+                                <div class="input-group-prepend" style=" margin-left: 43%">
                                     <button type="button" class="btn btn-warning btn-sm" onclick="ExportDailyReceive()"><i class="fas fa-edit"></i> <b> Export Daily Receive Report </b></button>
-                                 </div>  
+                                </div>
                             </div>
                         </div>
-                        
+
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover" id="myTable">
-                                <thead  style="background-color: gray;">
+                            <table class="table table-hover" id="table-data">
+                                <thead style="background-color: gray;">
                                     <tr>
-                                        <th style="text-align: center;">No</th> 
+                                        <th style="text-align: center;">No</th>
                                         <th style="text-align: center; white-space:nowrap;">Rec Date</th>
                                         <th style="text-align: center; white-space:nowrap;">Contract No</th>
                                         <th style="text-align: center; white-space:nowrap;">Cus Name</th>
@@ -82,17 +82,19 @@
                                         <th style="text-align: center; white-space:nowrap;">Chennel</th>
                                         <th style="text-align: center; white-space:nowrap;">Lot</th>
                                         <th style="text-align: center; white-space:nowrap;">Opertor</th>
-                                      
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;
                                     foreach ($daily as $key) {
-                                        ?>
+
+                                        // $sumbefore = $key->amount - $key->vatamount;
+                                    ?>
                                         <tr>
-                                            <td style="text-align: center; white-space:nowrap;"><?php echo $key->row; ?></td> 
-                                            <td style="text-align: center; white-space:nowrap;"><?php echo date('m-d-Y', strtotime($key->rec_date)); ?></td>
+                                            <td style="text-align: center; white-space:nowrap;"><?php echo $no; ?></td>
+                                            <td style="text-align: center; white-space:nowrap;"><?php echo date('d-m-Y', strtotime($key->rec_date)); ?></td>
                                             <td style="text-align: center; white-space:nowrap;"><?php echo $key->contract_no; ?></td>
                                             <td style="white-space:nowrap;"><?php echo iconv('tis-620', 'utf-8', $key->cus_name); ?></td>
                                             <td style="white-space:nowrap;"><?php echo $key->id_no; ?></td>
@@ -103,7 +105,7 @@
                                             <td style="text-align: center; white-space:nowrap;"><?php echo $key->lot_no; ?></td>
                                             <td style="text-align: center; white-space:nowrap;"><?php echo $key->operator_name; ?></td>
                                         </tr>
-                                        <?php $no++;
+                                    <?php $no++;
                                     }
                                     ?>
 
@@ -125,8 +127,8 @@
                                     }
                                     ?>
                                     <tr style="display: none;">
-                                        <!-- <td></td> -->
-                                        <td style="font-size: 1.2em;"><b>Grand Total</b></td>
+                                        <td style="text-align: center; white-space:nowrap;"><b>Grand Total</b></td>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -140,35 +142,135 @@
                                 </tbody>
                             </table>
                         </div>
-                        
-                        <?php foreach ($Countdaily as $row) { ?>
-                            <?php  $total_record = $row->Count; ?>
-                        <?php } ?> 
 
+                        <br>
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item" data-page="prev"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item" data-page="next" id="prev"><a class="page-link" href="#">Next</a></li>
+                        </ul>
 
-                        <?php $total_page = ceil($total_record / $pageend); ?> 
-                        <div class="card-footer clearfix">
-                            <ul class="pagination pagination-sm m-0 float-right">
-                                <li class="page-item"><a class="page-link" onclick="pagedatapay(page='')">&laquo;</a></li>
-                                <?php for ($i = 1; $i <= $total_page; $i++) { ?>  
-                                    <li class="page-item"><a class="page-link" onclick="pagedatapay(page='<?php echo $i ?>')"><?php echo $i ?></a></li>
-                                <?php } ?>
-                                <li class="page-item"><a class="page-link" onclick="pagedatapay(page='<?php echo $total_page ?>')">&raquo;</a></li>
-                            </ul>
-                        </div>
-                        
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <hr>
-    <!-- <a href="<?php //echo site_url('Payment_controller/daily_PDF') ?>"><button type="submit" class="btn btn-primary">PDF</button></a> -->
+
+
+
 </div>
 
+<script>
+    getPagination('#table-data');
+
+    function getPagination(table) {
+
+        var lastPage = 1;
+
+        $('.pagination')
+            .find('li')
+            .slice(1, -1)
+            .remove();
+        var trnum = 0;
+        maxRows = 10;
+
+        $('.pagination').show();
+
+        var totalRows = $(table + ' tbody tr').length;
+        $(table + ' tr:gt(0)').each(function() {
+            trnum++;
+            if (trnum > maxRows) {
+                $(this).hide();
+            }
+            if (trnum <= maxRows) {
+                $(this).show();
+            }
+        });
+
+        if (totalRows > maxRows) {
+            var pagenum = Math.ceil(totalRows / maxRows);
+            for (var i = 1; i <= pagenum;) {
+                $('.pagination #prev')
+                    .before(
+                        '<li class="page-item"data-page="' +
+                        i +
+                        '">\
+                        <a class="page-link" href="#">' +
+                        i++ +
+                        '</a>\
+                    </li>')
+                    .show();
+            }
+        } else {
+            $('.pagination').hide();
+        }
+
+        $('.pagination [data-page="1"]').addClass('active');
+        $('.pagination li').on('click', function(evt) {
+            evt.stopImmediatePropagation();
+            evt.preventDefault();
+            var pageNum = $(this).attr('data-page');
+            var maxRows = 10;
+            if (pageNum == 'prev') {
+                if (lastPage == 1) {
+                    return;
+                }
+                pageNum = --lastPage;
+            }
+            if (pageNum == 'next') {
+                if (lastPage == $('.pagination li').length - 2) {
+                    return;
+                }
+                pageNum = ++lastPage;
+            }
+            lastPage = pageNum;
+            var trIndex = 0;
+            $('.pagination li').removeClass('active');
+            $('.pagination [data-page="' + lastPage + '"]').addClass('active');
+
+            limitPagging();
+            $(table + ' tr:gt(0)').each(function() {
+
+                trIndex++;
+                if (
+                    trIndex > maxRows * pageNum ||
+                    trIndex <= maxRows * pageNum - maxRows
+                ) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+        });
+
+        limitPagging();
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    }
+
+    function limitPagging() {
+
+
+        if ($('.pagination li').length > 7) {
+            if ($('.pagination li.active').attr('data-page') <= 3) {
+                $('.pagination li:gt(5)').hide();
+                $('.pagination li:lt(5)').show();
+                $('.pagination [data-page="next"]').show();
+            }
+            if ($('.pagination li.active').attr('data-page') > 3) {
+                $('.pagination li:gt(0)').hide();
+                $('.pagination [data-page="next"]').show();
+                for (let i = (parseInt($('.pagination li.active').attr('data-page')) - 2); i <= (parseInt($('.pagination li.active').attr('data-page')) + 2); i++) {
+                    $('.pagination [data-page="' + i + '"]').show();
+
+                }
+
+            }
+        }
+    }
+</script>
+
+
+<!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
@@ -176,24 +278,39 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>-->
+
+<!-- <script type="text/javascript">
+    function ExportDailyReceive() {
+
+        var Operator = document.getElementById('Operator').value;
+        var lot = document.getElementById('lot').value;
+        var datestart = document.getElementById('datestart').value;
+        // var dateend = document.getElementById('dateend').value;
+
+        window.location.href = '<//?php echo site_url('Export_report/Export_DailyReceiveReport?') ?>Operator=' + Operator + "&lot=" + lot + "&datestart=" + datestart;
+
+    }
+</script> -->
+
 
 <script type="text/javascript">
     function ExportDailyReceive() {
-        
-      var Operator = document.getElementById('Operator').value;
-       var lot = document.getElementById('lot').value;
-       var datestart = document.getElementById('datestart').value; 
-       
-   
 
-        window.location.href = '<?php echo site_url('Payment_controller/Export_DailyReceiveReport?') ?>Operator='+Operator+"&lot="+lot+"&datestart="+datestart;
+        document.getElementById('overlay').style.display = "block";
 
+        var Operator = document.getElementById('Operator').value;
+        var lot = document.getElementById('lot').value;
+        var datestart = document.getElementById('datestart').value;
+
+        window.location.href = '<?php echo site_url('Export_report/Export_DailyReceiveReport?') ?>Operator=' + Operator + "&lot=" + lot + "&datestart=" + datestart;
+
+        $('#overlay').fadeOut(3000);
     }
-</script> 
+</script>
 
 
-<script>
+<!--<script>
     $(document).ready(function () {
         $('#myTable1').DataTable({
 //            "pageLength": 20,
@@ -202,16 +319,17 @@
 //                {
 //                    extend: 'excel',
 //                    text: 'Excel',
-//                    messageTop: '<?php echo $OPP . " " . date('d-m-Y', strtotime($date)) ?>'
+//                    messageTop: '<//?php echo $OPP . " " . date('d-m-Y', strtotime($date)) ?>'
 //                }
 //            ]
         });
     });
-</script>
+</script>-->
 
 <script type="text/javascript">
     function PDF() {
         var datestart = document.getElementById('datestart').value;
+        var dateend = document.getElementById('dateend').value;
         var lot = document.getElementById('lot').value;
         var Operator = document.getElementById('Operator').value;
 
@@ -219,8 +337,7 @@
             type: "POST",
             url: "<?php echo site_url('Payment_controller/daily_PDF') ?>",
             data: $("#scan").serialize(),
-        }).done(function (data) {
-            // alert(data); 
+        }).done(function(data) {
         })
     }
 </script>
@@ -235,8 +352,7 @@
             type: "POST",
             url: "<?php echo site_url('Payment_controller/daily_Excel') ?>",
             data: $("#scan").serialize(),
-        }).done(function (data) {
-            // alert(data);
+        }).done(function(data) {
         })
     }
 </script>

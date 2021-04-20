@@ -75,14 +75,18 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn' => '',
-	'hostname' => 'Driver={SQL Server Native Client 10.0};Server=191.191.190.62;Database=JMTLOAN_PROD-Restore;',
-	'username' => 'sa',
-	'password' => 'Jmt@123',
+	// 'hostname' => 'Driver={SQL Server Native Client 10.0};Server=191.191.190.62;Database=JMTLOAN_PROD-Restore;',
+	// 'username' => 'sa',
+	// 'password' => 'Jmt@123',
+	'hostname' => 'Driver={SQL Server Native Client 10.0};Server=191.191.190.18;Database=JMTLOAN_PROD;',
+	'username' => 'AppPS',
+	'password' => 'PS@jmt123',
 	'database' => '',
 	'dbdriver' => 'odbc',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
+	 'db_debug' => (ENVIRONMENT !== 'production'),
+	/*'db_debug' => FALSE,*/
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'tis620',

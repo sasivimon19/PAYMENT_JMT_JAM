@@ -1,5 +1,6 @@
 <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/util.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">-->
+ 
 
 <!--<style>
     /* Removes the clear button from date inputs */
@@ -60,7 +61,41 @@ input[type="month"], focus {
     visibility: visible !important;
 }
 </style>-->
+    <link href="<?php echo base_url(); ?>assets/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css"> 
+    <script src="<?php echo base_url(); ?>assets/sweetalert/dist/sweetalert.min.js"></script> 
+    <script src="<?php echo base_url(); ?>AdminLTE/plugins/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/font-awesome-4.7.0/css/font-awesome.min.css">
+        
+    <style>
+              #loadding{
+               position: fixed;
+               left: 0px;
+               width: 100%;
+               height: 100%;
+               padding-left:45%;
+               padding-top: 15%;
 
+               }.modal {
+               display: none; 
+               position: fixed;  
+               height:100%; 
+               background-color: rgb(0,0,0); /* Fallback color */ 
+               background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+               padding-top: 0px;
+
+           }  
+    </style>  
+    
+<style>
+        @media only screen and (max-width: 600px) {
+            #buttonexcel_cash{
+                margin-left: -100%;
+            }
+            #buttonpdf_cash{
+                margin-left: 0%;
+            }
+        }
+</style>
 
 <div id="main">
     <div class="wrapper">
@@ -70,24 +105,22 @@ input[type="month"], focus {
                     <div class="card card-secondary">
                         <div class="card-header" style="background-color: #c3000d;">
                             <h3 class="card-title"> <b> Report </b> </h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                            </div>
+<!--                            <div class="card-tools">
+                                <button type="button"  class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            </div>-->
                         </div>
                         <div class="card-body">
                             <div id="main_eir" >
                                 <form id="search_form">
                                     <div id="search">
-                                        <?php //$this->load->view($search) ?>
-
                                         <div class="row" style=" margin-top: 2%;"> 
-                                            <div class="col-md-3">
+                                          <div class="col-md-3">
                                                 <div class="input-group mb-4">
                                                     <div class="input-group-prepend">
                                                         <button type="button" class="btn btn-default "  style="background-color: #44CEF6;"><b>Company</b></button>
                                                     </div>
                                                     <select class=" form-control" id="port" name= "port">
-                                                        <option style="display: none;" value=" <?php echo base64_decode($selecport) ?>"><?php echo base64_decode($selecport) ?></option>
+                                                        <option style="display: none;" value=" <?php echo $selecport ?>"><?php echo $selecport ?></option>
 
                                                         <?php foreach ($port as $s) { ?>
                                                             <option value="<?php echo $s->Port ?>"><?php echo $s->Port ?></option>
@@ -124,9 +157,9 @@ input[type="month"], focus {
 
                                         <div class="col-md-12">
                                             <div class="input-group mb-4" id="buttonexport">
-                                                <div class="input-group-prepend" style=" margin-left: 81%">
-                                                    <button type="button" onclick="excel_cash()" class="btn btn-success btn-sm" ><i class="fas fa-file-excel"> </i> ExportExcel</button> 
-                                                    <button type="button" onclick="pdf_cash()" class="btn btn-danger btn-sm"><i class="fa fa-file-pdf"></i> ExportPDF</button>  
+                                                <div class="input-group-prepend"  style=" margin-left: 81%">
+                                                    <button type="button" id="buttonexcel_cash" onclick="excel_cash()" class="btn btn-success btn-sm" ><i class="fas fa-file-excel"> </i> ExportExcel </button> 
+                                                    <button type="button" id="buttonpdf_cash" onclick="pdf_cash()" class="btn btn-danger btn-sm"><i class="fa fa-file-pdf"></i> ExportPDF </button>  
                                                 </div> 
                                             </div> 
                                         </div> 
@@ -145,6 +178,10 @@ input[type="month"], focus {
         </div>
     </div>
 </div>
+
+    <div id="loadding" class="modal" style="display: none" >
+        <img style="margin-top: 15%;width: 15%;" src="<?php echo base_url(); ?>assets/images/loader.gif">
+    </div>
 
 
 <!--<div class="container">
@@ -173,6 +210,8 @@ input[type="month"], focus {
 
 <script>
 function search_cash() {
+    
+       document.getElementById('loadding').style.display = "block"; 
         
         var datas = "port=" + document.getElementById('port').value 
                 + "&date=" + document.getElementById('date').value 
@@ -184,10 +223,11 @@ function search_cash() {
             url: "<?php echo site_url('port/pagingmain_cash') ?>",
             data: datas,
         }).done(function(data) {
-             $('#all_eir').html(data);        
+             $('#all_eir').html(data); 
+             document.getElementById('loadding').style.display = "none"; 
         });
         
-
+        
     }
     
     function refresh_cash() {

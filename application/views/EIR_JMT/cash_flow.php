@@ -10,8 +10,8 @@
 
     <!--<link rel="stylesheet" href="<?php echo base_url() ?>dist/css/boostraps.min.css?v=<?php echo date('Y-m-d H:i:s'); ?>">-->
 
-    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/util.css">-->
-    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
 
         <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--> 
        <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
@@ -39,6 +39,7 @@
                 text-align: right;
                 vertical-align: middle;
                 padding: 1px;
+                z-index: 0;
 
 
             }
@@ -74,7 +75,6 @@
 
             }
 
-
             tbody>tr>td:nth-child(1)
             {
                 background-color: #f1f1f1;
@@ -83,8 +83,8 @@
                 left: 0;
             }
             th:nth-child(1){
-                background-color: #5bc0de;
-                color: black;
+                background-color: darkblue;
+                color: white;
                 position: sticky;
                 left: 0;
                 z-index: 1;
@@ -97,11 +97,17 @@
                 left: 41px;
             }
             th:nth-child(2){
-                background-color: #5bc0de;
-                color: black;
+                background-color: darkblue;
+                color: white;
                 position: sticky;
                 left: 41px;
                 z-index: 1;
+            }
+            @media only screen and (max-width: 600px) {
+                #buttondatatotal{
+                    margin-left: -70%;
+                    margin-top: 2%;
+                }
             }
 
 
@@ -132,7 +138,7 @@
         <!--                                     <p style="text-align: left">
                                         <?php //echo $count_all; ?>
                                         </p>-->
-                                        <button type="button" class="btn btn-warning btn-sm" id="buttondata"><i class="fas fa-database"></i>  <b>ข้อมูลทั้งหมด : <?php echo $count_all; ?> </b></button>
+                                        <button type="button" class="btn btn-warning btn-sm" id="buttondatatotal"><i class="fas fa-database"></i>  <b>ข้อมูลทั้งหมด : <?php echo $count_all; ?> </b></button>
                                        <!--<a href="<?php //echo site_url('Payment_controller/Export_DailyReceiveReport')   ?>"><button type="button" class="btn btn-warning btn-sm"><i class="fas fa-cloud-download-alt"></i> <b>Export Daily Receive Report</b></button></a>-->
                                        <!--<button type="button" class="btn btn-warning btn-sm" onclick="ExportDailyReceive()"><i class="fas fa-edit"></i> <b> Export Daily Receive Report </b></button>-->
                                     </div>  
@@ -147,6 +153,7 @@
                                 <table class="table table-hover" id="myTable">
                                     <thead  style="background-color: gray;">
                                         <tr>
+
                                             <th style=" white-space: nowrap;  text-align:center; vertical-align: middle;">Mob</th>
                                             <th style=" white-space: nowrap; text-align: center; vertical-align: middle;">Port</th>
                                             <th style=" white-space: nowrap;">MONTH_YEAR</th>
@@ -156,6 +163,7 @@
                                             <th style=" white-space: nowrap;">ลูกหนี้ต้นงวดบวกดอกเบี้ยสะสมคงค้างก่อน Provision</th>
                                             <th style=" white-space: nowrap;">Provision</th>
                                             <th style=" white-space: nowrap;">ลูกหนี้ต้นงวด Net Provision</th>
+                                            <th style=" white-space: nowrap;">ประมาณการรายได้</th>
                                             <th style=" white-space: nowrap;">กระแสเงินสดเข้า</th>
                                             <th style=" white-space: nowrap;">รับรู้รายได้</th>
                                             <th style=" white-space: nowrap;">กระแสเงินสดคงเหลือ</th>
@@ -164,13 +172,18 @@
                                             <th style=" white-space: nowrap;">ตัดดอกเบี้ย</th>
                                             <th style=" white-space: nowrap;">ดอกเบี้ยคงเหลือสะสม</th>
                                             <th style=" white-space: nowrap;">ตัดลูกหนี้</th>
+                                            <th style=" white-space: nowrap;">ลูกหนี้ลดลง Provision ปัจจุบัน</th>
+                                            <th style=" white-space: nowrap;">ลูกหนี้ลดลง Provision สิ้นปี2019</th>
                                             <th style=" white-space: nowrap;">รับรู้ร้อย</th>
                                             <th style=" white-space: nowrap;">ต้นเงินลงทุนคงเหลือ NetProvision</th>
                                             <th style=" white-space: nowrap;">ลูกหนี้ปลายงวด + ดอกเบี้ยสะสมคงค้าง</th>
                                             <th style=" white-space: nowrap;">NPV</th>
-                                            <th style=" white-space: nowrap;">Provision ที่เกิดขึ้นภายในเดือน</th>
-                                            <th style=" white-space: nowrap;">Provision เดือนถนัดไป</th>
+                                            <th style=" white-space: nowrap;">ผลต่าง ลูกหนี้ปลายงวดบวกดอกเบี้ยสะสมคงค้างกับ NPV</th>
+                                            <th style=" white-space: nowrap;">Provision ภายในเดือน</th>
+                                            <th style=" white-space: nowrap;">Provision เก่าภายในเดือน</th>
                                             <th style=" white-space: nowrap;">Provision สะสมคงเหลือ</th>
+                                            <th style=" white-space: nowrap;">Provision สะสมคงเหลือปี 2019</th>
+                                            <th style=" white-space: nowrap;">Provision สะสมคงเหลือทั้งหมด</th>
 
 
                                         </tr>
@@ -178,8 +191,8 @@
 
                                     <tbody>
 
-                                        <? if($count_all >0){?>
-                                        <? $sumnumber= 0;
+                                        <?php if($count_all > 0){ ?>
+                                        <?php $sumnumber = 0;
 
                                         foreach ($result as $r) {
 
@@ -187,44 +200,50 @@
                                         $sumnumber = $sumnumber + $CashReceive;
                                         ?>
                                         <tr nowrap>
-                                            <td nowrap style="text-align:center; vertical-align: middle;" class="long"> <? echo $r->Mob; ?></td>
-                                            <td nowrap style="text-align:center; vertical-align: middle;"> <? echo iconv('tis-620//ignore', 'utf-8//ignore', $r->Port); ?> </td>
-                                            <? if($r->Today == 1){?>
+                                            <td nowrap style="text-align:center; vertical-align: middle;" class="long"> <?php echo $r->Mob; ?></td>
+                                            <td nowrap style="text-align:center; vertical-align: middle;"> <?php echo iconv('tis-620//ignore', 'utf-8//ignore', $r->Port); ?> </td>
+                                            <?php if($r->Today == 1){?>
                                             <td nowrap style="text-align:center; vertical-align: middle; background-color: red; color: yellow;"> <? echo  (new DateTime($r->MONTH_YEAR))->format("d/m/Y");?>&nbsp;</td> 
-                                            <?}else{?>
-                                            <td nowrap style="text-align:center; vertical-align: middle;"> <? echo  (new DateTime($r->MONTH_YEAR))->format("d/m/Y");?>&nbsp;</td>   
-                                            <?}?>
+                                            <?php }else{ ?>
+                                            <td nowrap style="text-align:center; vertical-align: middle;"> <?php echo  (new DateTime($r->MONTH_YEAR))->format("d/m/Y");?>&nbsp;</td>   
+                                            <?php } ?>
 
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->TransferFee,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->CourtFee,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->RevokeCustomer,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->OS_Before_Provision,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->ProvisonOnMonth,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->OS_NetProvision,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->CashReceive,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->Receive,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->Cash_Balance,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->Interest,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->Cumulative_Interest,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->Cut_InterestOnMonth,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->Interest_BalanceOnMonth,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->Cut_OSDebt,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->Rec100,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->OS_BalanceNPV,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->OS_BalanceInterestLast,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->NPV,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->PV_BalanceOnMonth,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->PV_NetMonth,2) ?></td>
-                                            <td nowrap style="text-align:right; vertical-align: middle;"> <? echo number_format($r->ProvisionCumulative,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->TransferFee,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->CourtFee,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->RevokeCustomer,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->OS_Before_Provision,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->ProvisonOnMonth,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->OS_NetProvision,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->CashFlowIFRS,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->CashReceive,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->Receive,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->Cash_Balance,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->Interest,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->Cumulative_Interest,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->Cut_InterestOnMonth,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->Interest_BalanceOnMonth,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->Cut_OSDebt,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->Revert_ProvisionOnMonth,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->Revert_ProvisionOld,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->Rec100,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->OS_BalanceNPV,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->OS_BalanceInterestLast,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->NPV,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->PV_BalanceOnMonth,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->PV_NetMonth,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->PV_Old,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->ProvisionCumulative,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->ProvisionOld_Balance,2) ?></td>
+                                            <td nowrap style="text-align:right; vertical-align: middle;"> <?php echo number_format($r->Total_Provision_Balance,2) ?></td>
                                         </tr>
-                                        <? } ?>
+                                        <?php  } ?>
                                         <tr>
                                         </tr>
-                                        <?}else{?>
+                                        <?php }else{ ?>
                                         <tr>
                                             <td colspan="10" style="text-align:center; vertical-align: middle;">ไม่พบรายการข้อมูล</td>
                                         </tr>
-                                        <?}?>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -233,11 +252,11 @@
                 </div> 
             </div> 
         </section>
-        <!--                      สูตรคำนวนหาจำนวนหน้า 
+        <!--   สูตรคำนวนหาจำนวนหน้า 
                    <div style="width: 100%;" class="text-center">
         <?php
-        $total_record = $count_all;
-        $total_page = ceil($total_record / $pageend);
+        //$total_record = $count_all;
+        //$total_page = ceil($total_record / $pageend);
         ?>
                        
         
